@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="js/jquery.js"></script>
+<script src="js/highcharts.js"></script>
+<script src="js/highcharts-more.js"></script>
+<script src="js/heatmap.js"></script>
+<script src="js/treemap.js"></script>
+
+<script type="text/javascript">
+    function newNode(name){
+        var $node =  $("<div>");
+        $node.css({width:'100%',height:200}).prependTo('body')
+        return $node;
+    }
+
+    function r(){
+        return Math.random();
+    }
+
+    Highcharts.setOptions({
+        global:{
+            useUTC:false
+        }
+    });
+
+    newNode().highcharts({
+        title:{
+          text:'phone sales'  
+        },
+        subtitle:{
+          text:'Q1'  
+        },
+        xAxis:{
+            categories:["Jan","Feb","Mar"]
+        },
+        yAxis:{
+            title:{
+                text:'sales'
+            },
+            plotLines:[{
+                value:5,
+                width:1,
+                color:'#ff0000'
+            }]  
+        },
+        series:[
+            {
+                name:'apple',
+                data:[1,2,2]
+            },
+            {
+                name:'samsung',
+                data:[3,1,5]
+            }
+        ],
+        legend:{
+            enabled:true,
+            layout:'vertical',
+            align:'right',
+            verticalAlign:'middle'
+        },
+        credits:{
+            enbaled:false
+        }
+    })
+
+    newNode().highcharts({
+        title:{
+          text:'PV'
+        },
+        xAxis:{
+          type:'datetime'
+        },
+        series:[{
+            data:[
+                [Date.now(),2],
+                [Date.now()+3600000,1]
+            ],
+            name:'a.com',
+            marker:{
+                radius:2
+            },
+            lineWidth:10
+        },
+        {
+            data:[
+                [Date.now(),2],
+                [Date.now()+3600000,2+Math.random()]
+            ],
+            cursor:'pointer',
+            name:'b.com',
+            tooltip:{
+                valuePrefix:'avg',
+                valueSuffix:'%'
+            }      
+        }],
+        tooltip:{
+            shared:true,
+            crosshairs:true
+        }
+        
+    })
+
+    newNode().highcharts({
+        chart:{
+            type:'area',
+            zoomType:'x'
+        },
+        plotOptions:{
+          series:{
+
+          }  
+        },
+        yAxis:{
+          title:{
+              text:'load'
+          }  
+        },
+        xAxis:{
+            reversed:true
+        },
+        series:[{
+            data:[1,2,3,2,1,0],
+            dataLabels:{
+                enabled:true,
+            },
+            enableMouseTracking:false,
+            color:'red'
+        }],
+        legend:{
+            enabled:false
+        }
+    })
+
+
+    newNode().highcharts({
+        series:[{
+            type:'pie',
+            data:[
+                ['a',2],
+                ['b',2],
+                ['c',2]
+            ]
+        }]
+    })
+
+    newNode().highcharts({
+        series:[{
+            data:[{
+                y:12,
+                marker:{
+                    radius:12
+                }
+            },12,{
+                y:8,
+                marker:{
+                    symbol:'url(http://v.baidu.com/news/widget/news/icon-more_7cf02b7.png)'
+                }
+            }]
+        }]
+    })
+
+    newNode().highcharts({
+        yAxis:{
+          plotBands:[{
+              from:10,
+              to:40,
+              color:'rgba(255,0,0,0.1)',
+              label:{
+                  text:'s',
+                  align:'right',
+                  verticalAlign:'middle'
+              }
+          }]  
+        },
+        series:[{
+            type:'spline',
+            data:[1,2,3,3,4,6,67,7,3,5,7,8,8],
+            marker:{
+                enabled:false
+            }
+        }]
+    })
+
+    newNode().highcharts({
+        xAxis:{
+          type:'datetime' 
+        },
+        series:[{
+            data:[
+                [Date.UTC(2016,1,1),100],
+                [Date.UTC(2016,3,3),200],
+                [Date.UTC(2016,9,3),200]
+
+            ]
+        }]
+    })
+
+    newNode().highcharts({
+        chart:{
+            type:'area'
+        },
+        xAxis:{
+            categories:["a","v","a","z"]
+        },
+        yAxis:{
+          labels:{
+              formatter:function(){
+                  return this.value+'%'
+              }
+          }  
+        },
+        tooltip:{
+          pointFormat:'{point.y}'  
+        },
+        series:[{
+            data:[1,2,3,4,5,6],
+            marker:{
+                enabled:false
+            },
+            name:'awesome'
+        },{
+            data:[2,3,null,3,4],
+            marker:{
+                enabled:false
+            },
+            name:'awesome'
+        }],
+        plotOptions: {
+            area: {
+                stacking: 'percent',
+                lineColor: '#ffffff',
+                lineWidth: 1,
+                marker: {
+                    lineWidth: 1,
+                    lineColor: '#ffffff'
+                }
+            }
+        },
+    })
+
+
+    newNode().highcharts({
+        chart:{
+            inverted:false
+        },
+        plotOptions:{
+            series:{
+                stacking:'normal'
+            }
+        },
+        series:[{
+            data:[1,2,null,2,1],
+            type:'areaspline'
+        },{
+            data:[1,2,null,2,1],
+            type:'areaspline',
+            fillOpacity:0.1
+        }]
+    })
+
+
+    newNode().highcharts({
+        xAxis:{
+          type:'datetime'  
+        },
+        tooltip:{
+            valueSuffix:'k'
+        },
+        series:[{
+            type:'arearange',
+            name:'system.load.1',
+            data:[
+             [Date.UTC(2016,4,27),1,2],
+             [Date.UTC(2016,4,28),1,3],
+             [Date.UTC(2016,4,29),1,9]
+            ]
+        }]
+    })
+
+
+    newNode().highcharts({
+        plotOptions:{
+          bar:{
+              stacking:'percent'
+          }  
+        },
+        xAxis:{
+          categories:["a","b","c"]  
+        },
+        yAxis:{
+          labels:{
+              enabled:false
+          }  
+        },
+        series:[{
+            type:'bar',
+            data:[1,2,3],
+            dataLabels:{
+                enabled:true
+            }
+        },{
+            type:'bar',
+            data:[1,2,5],
+            dataLabels:{
+                enabled:true
+            }
+        }]
+    })
+
+    newNode().highcharts({
+        xAxis:{
+          categories:['a','b']  
+        },
+        yAxis:{
+          labels:{
+              enabled:false
+          }  
+        },
+        series:[{
+            type:'bar',
+            data:[1,-1],
+            dataLabels:{
+                enabled:true
+            }
+        }]
+    })
+
+    newNode().highcharts({
+        chart:{
+          type:'column'
+        },
+        plotOptions:{
+          column:{
+              stacking:'percent'
+          }  
+        },
+        xAxis:{
+            categories:["Apple","Orange"]
+        },
+        series:[{
+            name:'John',
+            data:[1,2],
+            stack:1
+        },{
+            name:'Bob',
+            data:[1,8]
+        },{
+            name:'Cindy',
+            data:[1,8]
+        },{
+            name:'Liz',
+            data:[1,8]
+        }]
+    })
+
+    newNode().highcharts({
+        xAxis:{
+          type:'category' ,
+          labels:{
+              rotation:-90
+          }
+        },
+        tooltip:{
+          pointFormat:'{point.y:.2f}'  
+        },
+        series:[{
+            type:'column',
+            data:[
+                ['node6.0',r()],
+                ['node0.12',r()],
+                ['node0.12',0],
+                ['node0.12',r()],
+                ['node0.12',r()],
+                ['node0.12',r()],
+                ['node0.12',r()],
+                ['node0.12',r()],
+                ['node0.12',r()]
+            ],
+            dataLabels:{
+                enabled:true,
+                rotation: -90
+            }
+        }]
+    })
+
+    newNode().highcharts({
+        series:[{
+            type:'pie',
+            data:[
+            ['a',1],
+            ['b',2]]
+        },{
+            type:'pie',
+            data:[
+            ['z',2],
+            ['x',9]
+            ],
+            x:50
+        }]
+    })
+
+    newNode().highcharts({
+        series:[{
+            type:'pie',
+            data:[1,2],
+            startAngle:-90,
+            endAngle:90,
+            center:['50%','100%']
+        }]
+    })
+
+    newNode().highcharts({
+        chart:{
+        },
+        xAxis:{
+          type:'category'  
+        },
+        series:[{
+            type:'scatter',
+            data:[
+                ['a',1,2],
+                ['b',2,3],
+                ['c',r(),4]
+            ]
+        }]
+    });
+
+    newNode().highcharts({
+        xAxis:{
+          type:'category'  
+        },
+        series:[{
+            type:'bubble',
+            data:[
+                ['a',2,4],
+                ['b',8,9]
+            ]
+        }]
+    })
+
+    newNode().highcharts({
+        colorAxis:{
+            minColor:'#FFFFFF',
+            maxColor:'#FF0000'
+        },
+        xAxis:{
+            categories:['host-a','host-b']
+        },
+        yAxis:{
+            type:'category'
+        },
+        series:[{
+            type:'heatmap',
+            data:[
+             [0,0,11],
+             [0,1,1],
+             [1,0,8],
+             [1,1,129]
+            ]
+        }]
+    })
+
+    newNode().highcharts({
+        colorAxis: {
+            maxColor: '#FFFFFF',
+            minColor: Highcharts.getOptions().colors[0]
+        },
+        series: [{
+            type: 'treemap',
+            layoutAlgorithm: 'squarified',
+            data: [{
+                name: 'A',
+                value: 6,
+                colorValue: 1
+            }, {
+                name: 'B',
+                value: 6,
+                colorValue: 2
+            }, {
+                name: 'C',
+                value: 4,
+                colorValue: 3
+            }, {
+                name: 'D',
+                value: 3,
+                colorValue: 4
+            }, {
+                name: 'E',
+                value: 2,
+                colorValue: 5
+            }, {
+                name: 'F',
+                value: 2,
+                colorValue: 6
+            }, {
+                name: 'G',
+                value: 1,
+                colorValue: 7
+            }]
+        }],
+        title: {
+            text: 'Highcharts Treemap'
+        }
+    })
+</script>
+</body>
+</html>
